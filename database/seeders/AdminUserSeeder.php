@@ -15,7 +15,6 @@ class AdminUserSeeder extends Seeder
      */
     public function run()
     {
-        // Create an admin user with role 'admin'
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@gmail.com',

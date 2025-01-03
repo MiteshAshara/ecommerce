@@ -18,6 +18,8 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'price' => 'required|integer',
+            'stock' => 'required|integer',
         ]);
 
         if ($request->hasFile('image')) {
@@ -28,45 +30,51 @@ class ProductController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'image' => $imagePath,
+            'price' => $request->price,
+            'stock' => $request->stock,
         ]);
 
         return redirect()->route('view.product')->with('success', 'Product created successfully!');
     }
-    
+
     public function view()
     {
         $products = Product::all();
         return view('admin.view-product', compact('products'));
     }
-     public function edit(Product $product)
-     {
-         return view('admin.edit-product', compact('product'));
-     }
- 
-     public function update(Request $request, Product $product)
-     {
-         $request->validate([
-             'name' => 'required|string|max:255',
-             'description' => 'required|string',
-             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-         ]);
- 
-         if ($request->hasFile('image')) {
-             $imagePath = $request->file('image')->store('images', 'public');
-         }
- 
-         $product->update([
-             'name' => $request->name,
-             'description' => $request->description,
-             'image' => isset($imagePath) ? $imagePath : $product->image,
-         ]);
- 
-         return redirect()->route('admin.view-product')->with('success', 'Product updated successfully!');
-     }
- 
-     public function destroy(Product $product)
-     {
-         $product->delete();
-         return redirect()->route('view.product')->with('success', 'Product deleted successfully!');
-     }
+    public function edit(Product $product)
+    {
+        return view('admin.edit-product', compact('product'));
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string',
+            'price' => 'required|integer',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'stock' => 'required|integer',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+        }
+
+        $product->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'stock' => $request->stock,
+            'image' => isset($imagePath) ? $imagePath : $product->image,
+        ]);
+
+        return redirect()->route('view.product')->with('success', 'Product updated successfully!');
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        return redirect()->route('view.product')->with('success', 'Product deleted successfully!');
+    }
 }

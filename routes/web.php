@@ -1,15 +1,19 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 //user
 Route::get('/', [UserController::class, 'index']);
+Route::get('/user', [UserAuthController::class, 'index'])->name('user.login');
 Route::get('/about', [UserController::class, 'about']);
 Route::get('/blog', [UserController::class, 'blog']);
 Route::get('/contact-us', [UserController::class, 'contact']);
+Route::get('/add-cart', [UserController::class, 'addcart']);
 Route::get('/services', [UserController::class, 'service']);
 Route::get('/shop', [UserController::class, 'shop']);
 
@@ -30,5 +34,21 @@ Route::prefix('admin')->group(function () {
         Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
         Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('admin.dashboard');
         Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
+
+        //blog
+        Route::get('/addblog', [BlogController::class, 'create'])->name('add.blog');
+        Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');
+        Route::get('/viewblog', [BlogController::class, 'view'])->name('view.blog');
+        Route::get('/blogs/edit/{blog}', [BlogController::class, 'edit'])->name('blog.edit');
+        Route::put('/blogs/{blog}', [BlogController::class, 'update'])->name('blog.update');
+        Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blog.destroy');
     });
+});
+
+//userlogin
+Route::prefix('user')->group(function () {
+Route::get('/', [UserAuthController::class, 'index'])->name('user.login');
+Route::post('/user-post-login', [UserAuthController::class, 'postLogin'])->name('user.login.post');
+Route::get('/register', [UserAuthController::class, 'registration'])->name('user.register');
+Route::post('/post-registration', [UserAuthController::class, 'postRegistration'])->name('user.register.post');
 });

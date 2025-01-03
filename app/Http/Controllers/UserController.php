@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class UserController extends Controller
     }
     public function blog()
     {
-        return view("user.blog");
+        $blogs = Blog::all();
+        return view("user.blog",compact("blogs"));
     }
     public function service()
     {

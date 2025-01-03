@@ -2,7 +2,7 @@
 <nav class="custom-navbar fixed-top navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
 <div class="container">
-    <a class="navbar-brand" href="{{URL::to('/')}}">Furni<span>.</span></a>
+    <a class="navbar-brand" href="{{URL::to('/')}}">E-com<span>.</span></a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -19,8 +19,8 @@
         </ul>
 
         <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-            <li><a class="nav-link" href="#"><img src="frontend/images/user.svg"></a></li>
-            <li><a class="nav-link" href="#"><img src="frontend/images/cart.svg"></a></li>
+            <li><a class="nav-link" href="{{URL::to('user')}}"><img src="frontend/images/user.svg"></a></li>
+            <li><a class="nav-link" href="{{URL::to('cart')}}"><img src="frontend/images/cart.svg"></a></li>
         </ul>
     </div>
 </div>
