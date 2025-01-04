@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
@@ -16,7 +17,9 @@ Route::get('/contact-us', [UserController::class, 'contact']);
 Route::get('/add-cart', [UserController::class, 'addcart']);
 Route::get('/services', [UserController::class, 'service']);
 Route::get('/shop', [UserController::class, 'shop']);
-
+Route::get('/add-cart', [CartItemController::class, 'addcart'])->name('add.cart');
+Route::post('add-cart', [CartItemController::class, 'addcart'])->name('cart.add');
+Route::delete('cart/{cartItem}', [CartItemController::class, 'remove'])->name('cart.remove');
 
 //admin
 Route::prefix('admin')->group(function () {
@@ -42,13 +45,19 @@ Route::prefix('admin')->group(function () {
         Route::get('/blogs/edit/{blog}', [BlogController::class, 'edit'])->name('blog.edit');
         Route::put('/blogs/{blog}', [BlogController::class, 'update'])->name('blog.update');
         Route::delete('/blogs/{blog}', [BlogController::class, 'destroy'])->name('blog.destroy');
+
+        //user
+        Route::get('/view-cart', [CartItemController::class, 'viewcart'])->name('view.cart');
     });
 });
 
 //userlogin
 Route::prefix('user')->group(function () {
-Route::get('/', [UserAuthController::class, 'index'])->name('user.login');
-Route::post('/user-post-login', [UserAuthController::class, 'postLogin'])->name('user.login.post');
-Route::get('/register', [UserAuthController::class, 'registration'])->name('user.register');
-Route::post('/post-registration', [UserAuthController::class, 'postRegistration'])->name('user.register.post');
+    Route::middleware('auth')->group(function () {
+        Route::get('/', [UserAuthController::class, 'index'])->name('user.login');
+        Route::post('/user-post-login', [UserAuthController::class, 'postLogin'])->name('user.login.post');
+        Route::get('/register', [UserAuthController::class, 'registration'])->name('user.register');
+        Route::post('/post-registration', [UserAuthController::class, 'postRegistration'])->name('user.register.post');
+        
+    });
 });

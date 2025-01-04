@@ -15,28 +15,39 @@
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       @if(auth()->user()->role == 'admin')
-          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-            <li class="nav-item">
-              <a href="{{route('add.product')}}" class="nav-link">
-                <p>Add Product</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('view.product')}}" class="nav-link">
-                <p>View Product</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('add.blog')}}" class="nav-link">
-                <p>Add Blogs</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="{{route('view.blog')}}" class="nav-link">
-                <p>View Blogs</p>
-              </a>
-            </li>
-          </ul>
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a href="{{route('add.product')}}" class="nav-link">
+            <p>Add Product</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('view.product')}}" class="nav-link">
+            <p>View Product</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('add.blog')}}" class="nav-link">
+            <p>Add Blogs</p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="{{route('view.blog')}}" class="nav-link">
+            <p>View Blogs</p>
+          </a>
+        </li>
+      </ul>
+      @endif
+
+      <!-- user -->
+      @if(auth()->user()->role == 'user')
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a href="{{route('view.cart')}}" class="nav-link">
+            <p>View Cart</p>
+          </a>
+        </li>
+      </ul>
       @endif
     </nav>
     <!-- /.sidebar-menu -->

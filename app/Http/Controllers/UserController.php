@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\CartItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -33,5 +34,10 @@ class UserController extends Controller
     {
         $products = Product::all();
         return view("user.shop", compact("products"));
+    }
+    public function cart()
+    {
+        $cartitem=CartItem::all();
+        return view("user.services",compact("cartitem"));
     }
 }

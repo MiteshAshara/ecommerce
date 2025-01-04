@@ -23,24 +23,72 @@
 
 	<div class="untree_co-section product-section before-footer-section">
 		<div class="container">
-			<div class="container">
-				<div class="row">
-					@foreach($products as $product)
-					<div class="col-12 col-md-4 col-lg-3 mb-5">
-						<a class="product-item" href="{{URL::to('add-cart')}}">
-							<img src="{{ asset('storage/' . $product->image) }}" class="img-fluid product-thumbnail" alt="image not found">
-							<h3 class="product-title">{{ $product->name }}</h3>
-							<strong class="product-price">₹{{ number_format($product->price, 2) }}</strong>
-							<span class="icon-cross">
-								<img src="{{ asset('frontend/images/cross.svg') }}" class="img-fluid" alt="remove">
-							</span>
-						</a>
+			<div class="row">
+				@foreach($products as $product)
+				<div class="col-12 col-md-4 col-lg-3 mb-5">
+					<div class="product-item">
+						<img src="{{ asset('storage/' . $product->image) }}" class="img-fluid product-thumbnail" alt="Product Image">
+						<h3 class="product-title">{{ $product->name }}</h3>
+						<strong class="product-price">₹{{ number_format($product->price, 2) }}</strong>
+						<p class="product-stock">Stock: {{ $product->stock }}</p>
+						<form action="{{ route('cart.add') }}" method="POST">
+							@csrf
+							<input type="hidden" name="product_id" value="{{ $product->id }}">
+							<input class="text-center" type="number" name="quantity" value="1" min="1" max="{{ $product->stock }}" required>
+							<button class="btn btn-dark " type="submit" @if($product->stock == 0) disabled @endif>
+								@if($product->stock == 0) Out of Stock @else Add to Cart @endif
+							</button>
+						</form>
 					</div>
-					@endforeach
 				</div>
+				@endforeach
 			</div>
 		</div>
 	</div>
+
 	</div>
 </main>
 @endsection
+<style>
+	.product-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.product-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-5px);
+}
+
+.product-thumbnail {
+    max-height: 200px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.product-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.product-price {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.product-stock {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.btn-dark {
+    width: 100%;
+    text-transform: uppercase;
+    padding: 10px 0;
+    font-weight: 600;
+}
+
+</style>

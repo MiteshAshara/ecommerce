@@ -14,4 +14,5 @@ class UserAuthController extends Controller
   {
     return view("user.auth.register");
   }
+ 
 }
