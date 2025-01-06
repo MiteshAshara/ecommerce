@@ -20,7 +20,7 @@ class CartItemController extends Controller
     public function addcart(Request $request)
     {
         if (!Auth::check()) {
-            return redirect('login')->with('error', 'You must be logged in to add items to the cart');
+            return redirect()->route('user.login')->with('error', 'You must be logged in to add items to the cart');
         }
 
         $request->validate([
@@ -62,6 +62,7 @@ class CartItemController extends Controller
             return redirect()->back()->with('error', 'Failed to add product to cart. Please try again');
         }
     }
+
     public function remove(CartItem $cartItem)
     {
 
@@ -75,5 +76,27 @@ class CartItemController extends Controller
         }
 
         return redirect()->route('view.cart')->with('error', 'You cannot remove an item from another user\'s cart');
+    }
+
+    public function update(Request $request, CartItem $cartItem)
+    {
+        if ($cartItem->user_id !== Auth::id()) {
+            return redirect()->route('view.cart')->with('error', 'You cannot update this cart item');
+        }
+
+        $request->validate([
+            'quantity' => 'required|integer|min:1|max:' . $cartItem->product->stock,
+        ]);
+
+        $oldQuantity = $cartItem->quantity;
+
+        $cartItem->quantity = $request->quantity;
+        $cartItem->save();
+
+        $cartItem->product->stock += ($oldQuantity - $cartItem->quantity);
+        $cartItem->product->save();
+
+      
+        return redirect()->back();
     }
 }

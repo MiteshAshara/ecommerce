@@ -20,6 +20,11 @@ Route::get('/shop', [UserController::class, 'shop']);
 Route::get('/add-cart', [CartItemController::class, 'addcart'])->name('add.cart');
 Route::post('add-cart', [CartItemController::class, 'addcart'])->name('cart.add');
 Route::delete('cart/{cartItem}', [CartItemController::class, 'remove'])->name('cart.remove');
+Route::put('/cart/update/{cartItem}', [CartItemController::class, 'update'])->name('cart.update');
+
+
+
+
 
 //admin
 Route::prefix('admin')->group(function () {
