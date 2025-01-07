@@ -49,7 +49,13 @@
       @php
       $cartItemCount = App\Models\CartItem::where('user_id', auth()->id())->sum('quantity');
       @endphp
-
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a href="{{ route('track.order') }}" class="nav-link">
+            <p>Tack Order</p>
+          </a>
+        </li>
+      </ul>
       @if($cartItemCount > 0)
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">

@@ -35,7 +35,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="stock" class="form-label">Product Price</label>
+                <label for="stock" class="form-label">Product Stock</label>
                 <input type="number" class="form-control @error('stock') is-invalid @enderror" id="stock" name="stock" value="{{ old('stock', $product->stock) }}" required>
                 @error('stock')
                     <div class="invalid-feedback">{{ $message }}</div>

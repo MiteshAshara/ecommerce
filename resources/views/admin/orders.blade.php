@@ -3,7 +3,7 @@
 @section('admin.content')
 <main class="main">
 
-<div class="container">
+    <div class="container">
         <h1 class="my-4 text-center">Orders</h1>
         <table class="table text-center">
             <thead>
@@ -19,10 +19,11 @@
                     <th scope="col">payment_status</th>
                     <th scope="col">Total Amount</th>
                     <th scope="col">Product Image</th>
+                    <th scope="col">Order Status</th>
                 </tr>
             </thead>
             <tbody>
-            @foreach($order as $orders)
+                @foreach($order as $orders)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $orders->firstname }}</td>
@@ -33,16 +34,28 @@
                     <td>{{ $orders->zip }}</td>
                     <td>{{ $orders->quantity }}</td>
                     <td>{{ $orders->payment_status }}</td>
-                    <td style="font-weight: bold;">{{ $orders->payable_amount }}</td>
+                    <td style="font-weight: bold;">₹{{ number_format($orders->payable_amount, 2)}}</td>
                     <td>
                         @if($orders->product && $orders->product->image)
-                            <img src="{{ asset('storage/' . $orders->product->image) }}" alt="{{ $orders->product->name }}" width="80" height="auto">
+                        <img src="{{ asset('storage/' . $orders->product->image) }}" alt="{{ $orders->product->name }}" width="80" height="auto">
                         @else
-                            <span>No Image</span>
+                        <span>No Image</span>
                         @endif
                     </td>
+                    <td>
+                        <form action="{{ route('orders.updateStatus', $orders->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <select class="form-select" name="order_status" onchange="this.form.submit()">
+                                <option value="received" {{ old('order_status', $orders->order_status) === 'received' ? 'selected' : '' }}>Received</option>
+                                <option value="processing" {{ old('order_status', $orders->order_status) === 'processing' ? 'selected' : '' }}>Processing</option>
+                                <option value="pending" {{ old('order_status', $orders->order_status) === 'pending' ? 'selected' : '' }}>Pending</option>
+                                <option value="reject" {{ old('order_status', $orders->order_status) === 'reject' ? 'selected' : '' }}>Reject</option>
+                            </select>
+                        </form>
+                    </td>
                 </tr>
-            @endforeach
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -38,19 +38,19 @@ class CheckoutController extends Controller
                 'user_id' => $user->id,
                 'product_id' => $cartItem->product->id,
                 'quantity' => $cartItem->quantity,
-                'payment_status' => $request->payment, 
-                'firstname' => $request->firstname, 
-                'email' => $request->email, 
-                'address' => $request->address, 
-                'city' => $request->city, 
-                'state' => $request->state, 
-                'zip' => $request->zip, 
-                'payable_amount' => $payableAmount 
+                'payment_status' => $request->payment,
+                'firstname' => $request->firstname,
+                'email' => $request->email,
+                'address' => $request->address,
+                'city' => $request->city,
+                'state' => $request->state,
+                'zip' => $request->zip,
+                'payable_amount' => $payableAmount
             ]);
         }
 
         CartItem::where('user_id', $user->id)->delete();
-        
+
         return redirect()->route('view.cart')->with('message', 'Order placed successfully!');
     }
 }

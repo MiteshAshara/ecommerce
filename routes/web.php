@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderTrackController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
@@ -44,7 +45,11 @@ Route::prefix('admin')->group(function () {
         
         //orders
         Route::get('/orders', [OrderController::class, 'index'])->name('view.orders');
+        Route::put('/orders/status/{order}', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
         
+        //order-track
+        Route::get('/track-order', [OrderTrackController::class, 'index'])->name('track.order');
+
         //blog
         Route::get('/addblog', [BlogController::class, 'create'])->name('add.blog');
         Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');

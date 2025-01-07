@@ -32,7 +32,7 @@
                         <img src="{{ asset('storage/' . $cartItem->product->image) }}" alt="Product Image" width="50">
                     </td>
                     <td>
-                        <form action="{{ route('cart.update', $cartItem->id) }}" method="POST" class="update-cart-form">
+                        <form action="{{ route('cart.update', $cartItem->id) }}" method="POST"  class="update-cart-form">
                             @csrf
                             @method('PUT')
                             <input type="hidden" name="product_id" value="{{ $cartItem->product->id }}">

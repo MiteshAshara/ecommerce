@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('state');
             $table->string('zip');
             $table->decimal('payable_amount', 10, 2)->default(0.00);
+            $table->string('order_status')->default('recevied');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

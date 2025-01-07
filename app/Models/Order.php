@@ -19,7 +19,8 @@ class Order extends Model
         'city',
         'state',
         'zip',
-        'payable_amount'
+        'payable_amount',
+        'order_status'
     ];
     public function product()
     {
