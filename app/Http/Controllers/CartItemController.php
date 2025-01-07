@@ -6,7 +6,6 @@ use App\Models\CartItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class CartItemController extends Controller
 {
@@ -33,8 +32,6 @@ class CartItemController extends Controller
             return redirect()->back()->with('error', 'Not enough stock available');
         }
 
-        DB::beginTransaction();
-
         try {
             $cartItem = CartItem::where('user_id', Auth::id())
                 ->where('product_id', $product->id)
@@ -54,11 +51,9 @@ class CartItemController extends Controller
             $product->stock -= $request->quantity;
             $product->save();
 
-            DB::commit();
-
             return redirect()->back()->with('success', 'Product added to cart');
         } catch (\Exception $e) {
-            DB::rollBack();
+
             return redirect()->back()->with('error', 'Failed to add product to cart. Please try again');
         }
     }
@@ -96,7 +91,6 @@ class CartItemController extends Controller
         $cartItem->product->stock += ($oldQuantity - $cartItem->quantity);
         $cartItem->product->save();
 
-      
         return redirect()->back();
     }
 }

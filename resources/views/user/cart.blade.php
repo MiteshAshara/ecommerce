@@ -47,7 +47,6 @@
                     </td>
                     <td>₹{{ number_format($cartItem->product->price, 2) }}</td>
                     <td class="total-price">₹{{ number_format($cartItem->product->price * $cartItem->quantity, 2) }}</td>
-
                     <td>
                         <form action="{{ route('cart.remove', $cartItem->id) }}" method="POST">
                             @csrf
@@ -74,7 +73,7 @@
                     <td></td>
                 </tr>
             </tbody>
-        </table>
+        </table>        
         @endif
     </div>
 </main>

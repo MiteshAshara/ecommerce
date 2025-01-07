@@ -56,7 +56,7 @@
                     @else
                     <li>
                         <a class="nav-link text-light" href="{{ route('user.login') }}">
-                            <img src="frontend/images/cart.svg" alt="Cart"> Login to View Cart
+                            <img src="frontend/images/cart.svg" alt="Cart"> 
                         </a>
                     </li>
                     @endif

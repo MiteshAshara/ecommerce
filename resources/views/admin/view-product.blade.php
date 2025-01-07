@@ -4,8 +4,6 @@
 <main class="main">
     <div class="container">
         <h1 class="my-4">All Products</h1>
-
-        <!-- Products Table -->
         <table class="table">
             <thead>
                 <tr>

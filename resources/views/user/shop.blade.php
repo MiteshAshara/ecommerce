@@ -66,7 +66,7 @@
 	.product-item {
 		border: 1px solid #ddd;
 		border-radius: 8px;
-		padding: 16px;
+		padding: 45px;
 		text-align: center;
 		transition: all 0.3s ease;
 	}

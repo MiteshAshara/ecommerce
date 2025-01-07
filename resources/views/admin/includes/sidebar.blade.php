@@ -36,19 +36,46 @@
             <p>View Blogs</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{route('view.orders')}}" class="nav-link">
+            <p>Orders</p>
+          </a>
+        </li>
       </ul>
       @endif
 
       <!-- user -->
       @if(auth()->user()->role == 'user')
+      @php
+      $cartItemCount = App\Models\CartItem::where('user_id', auth()->id())->sum('quantity');
+      @endphp
+
+      @if($cartItemCount > 0)
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-          <a href="{{route('view.cart')}}" class="nav-link">
+          <a href="{{ route('view.cart') }}" class="nav-link">
+            <p>View Cart</p>
+          </a>
+        </li>
+      </ul>
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a href="{{ route('checkout') }}" class="nav-link">
+            <p>Checkout</p>
+          </a>
+        </li>
+      </ul>
+      @else
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a href="{{ route('view.cart') }}" class="nav-link">
             <p>View Cart</p>
           </a>
         </li>
       </ul>
       @endif
+      @endif
+
     </nav>
     <!-- /.sidebar-menu -->
   </div>

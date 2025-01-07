@@ -3,6 +3,8 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartItemController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserAuthController;
 use App\Http\Controllers\UserController;
@@ -23,9 +25,6 @@ Route::delete('cart/{cartItem}', [CartItemController::class, 'remove'])->name('c
 Route::put('/cart/update/{cartItem}', [CartItemController::class, 'update'])->name('cart.update');
 
 
-
-
-
 //admin
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('admin.login');
@@ -42,7 +41,10 @@ Route::prefix('admin')->group(function () {
         Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
         Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('admin.dashboard');
         Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
-
+        
+        //orders
+        Route::get('/orders', [OrderController::class, 'index'])->name('view.orders');
+        
         //blog
         Route::get('/addblog', [BlogController::class, 'create'])->name('add.blog');
         Route::post('/blogs', [BlogController::class, 'store'])->name('blog.store');
@@ -53,6 +55,8 @@ Route::prefix('admin')->group(function () {
 
         //user
         Route::get('/view-cart', [CartItemController::class, 'viewcart'])->name('view.cart');
+        Route::get('/checkout', [CheckoutController::class,'index'])->name('checkout');
+        Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
     });
 });
 
