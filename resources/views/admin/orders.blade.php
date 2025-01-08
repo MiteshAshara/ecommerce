@@ -49,8 +49,9 @@
                             <select class="form-select" name="order_status" onchange="this.form.submit()">
                                 <option value="received" {{ old('order_status', $orders->order_status) === 'received' ? 'selected' : '' }}>Received</option>
                                 <option value="processing" {{ old('order_status', $orders->order_status) === 'processing' ? 'selected' : '' }}>Processing</option>
-                                <option value="pending" {{ old('order_status', $orders->order_status) === 'pending' ? 'selected' : '' }}>Pending</option>
-                                <option value="reject" {{ old('order_status', $orders->order_status) === 'reject' ? 'selected' : '' }}>Reject</option>
+                                <option value="shipped" {{ old('order_status', $orders->order_status) === 'shipped' ? 'selected' : '' }}>Shipped</option>
+                                <option value="dispatch" {{ old('order_status', $orders->order_status) === 'dispatch' ? 'selected' : '' }}>Dispatch</option>
+                                <option value="delivered" {{ old('order_status', $orders->order_status) === 'delivered' ? 'selected' : '' }}>Delivered</option>
                             </select>
                         </form>
                     </td>

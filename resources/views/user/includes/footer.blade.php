@@ -50,8 +50,9 @@
 
                             <div class="col-6 col-sm-6 col-md-3">
 								<div class="row list-unstyled">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d236295.21073531196!2d70.65648107237628!3d22.273721549267616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959c98ac71cdf0f%3A0x76dd15cfbe93ad3b!2sRajkot%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1735639253060!5m2!1sen!2sin"
-                                     width="50" height="200" style="border:5px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                
+								<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14768.02898998241!2d70.76262655541994!3d22.277715300000008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959ca38980b609f%3A0xbe6ddbdac5bdfa27!2sOm%20Decora%209%20Square!5e0!3m2!1sen!2sin!4v1736334727884!5m2!1sen!2sin"
+                                     width="10" height="200" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                 </div>
 							</div>
 

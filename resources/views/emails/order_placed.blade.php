@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmation</title>
     <style>
         body {
@@ -11,7 +13,7 @@
         }
 
         .container {
-            width: 600px;
+            width: 300px;
             margin: 50px auto;
             background-color: #ffffff;
             padding: 30px;
@@ -36,22 +38,6 @@
             border-radius: 5px;
             text-align: center;
             color: black;
-        }
-
-        .pending {
-            background-color: #2196F3;
-        }
-
-        .processing {
-            background-color: #FF9800;
-        }
-
-        .completed {
-            background-color: #4CAF50;
-        }
-
-        .rejected {
-            background-color: #F44336;
         }
 
         .footer {
@@ -81,7 +67,7 @@
             @elseif($orderStatus=='processing' ) processing
             @elseif($orderStatus=='completed' ) completed
             @elseif($orderStatus=='rejected' ) rejected
-            @endif">
+            @endif>
             Your Order Hasbeen : {{ ucfirst($orderStatus) }}.
         </p>
 
@@ -93,6 +79,7 @@
             <p>Best regards, <br>Your Company Team</p>
             <p><a href="{{ url('/') }}">Visit our website</a> for more information.</p>
         </div>
+
     </div>
 </body>
 
