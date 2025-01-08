@@ -4,12 +4,12 @@
 <main class="main">
     <div class="container">
         <h1 class="my-4 text-center">Track Your Order</h1>
-
+    
         <form action="{{ route('order.track') }}" method="GET">
             <div class="form-group">
                 <label for="order_number">Enter Your Order Number:</label>
                 <input type="text" name="order_number" id="order_number" class="form-control"
-                    value="{{ old('order_number') }}" placeholder="12345678" maxlength="8" required>
+                    value="{{ old('order_number') }}" placeholder="#ordUSE2062" required>
             </div>
             <button type="submit" class="btn btn-dark">Track Order</button>
         </form>

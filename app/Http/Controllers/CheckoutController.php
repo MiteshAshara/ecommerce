@@ -6,6 +6,8 @@ use App\Models\CartItem;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\OrderPlacedMail;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -27,14 +29,18 @@ class CheckoutController extends Controller
             'zip' => 'required|string|max:10',
             'payment' => 'required|string|in:visa,paypal,cod',
         ]);
+
         $cartItems = CartItem::where('user_id', $user->id)->get();
         $totalAmount = 0;
+        $lastOrder = null; 
+
         foreach ($cartItems as $cartItem) {
             $productPrice = $cartItem->product->price;
             $productQuantity = $cartItem->quantity;
             $payableAmount = $productPrice * $productQuantity;
             $totalAmount += $payableAmount;
-            Order::create([
+
+            $lastOrder = Order::create([
                 'user_id' => $user->id,
                 'product_id' => $cartItem->product->id,
                 'quantity' => $cartItem->quantity,
@@ -46,11 +52,16 @@ class CheckoutController extends Controller
                 'state' => $request->state,
                 'zip' => $request->zip,
                 'payable_amount' => $payableAmount,
-                'order_number'
+                'order_status' => 'received'  
             ]);
         }
 
+        
         CartItem::where('user_id', $user->id)->delete();
+
+        if ($lastOrder) {
+            Mail::to($request->email)->send(new OrderPlacedMail($lastOrder));
+        }
 
         return redirect()->route('view.cart')->with('message', 'Order placed successfully!');
     }
