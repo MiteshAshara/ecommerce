@@ -45,7 +45,8 @@ class CheckoutController extends Controller
                 'city' => $request->city,
                 'state' => $request->state,
                 'zip' => $request->zip,
-                'payable_amount' => $payableAmount
+                'payable_amount' => $payableAmount,
+                'order_number'
             ]);
         }
 

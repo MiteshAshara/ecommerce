@@ -44,19 +44,19 @@
       </ul>
       @endif
 
-      <!-- user -->
       @if(auth()->user()->role == 'user')
-      @php
-      $cartItemCount = App\Models\CartItem::where('user_id', auth()->id())->sum('quantity');
-      @endphp
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-          <a href="{{ route('track.order') }}" class="nav-link">
-            <p>Tack Order</p>
+          <a href="{{ route('order.track') }}" class="nav-link">
+            <p>Track Order</p>
           </a>
         </li>
       </ul>
-      @if($cartItemCount > 0)
+      
+      @php
+      $cartItemCount = App\Models\CartItem::where('user_id', auth()->id())->sum('quantity');
+      @endphp
+
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
           <a href="{{ route('view.cart') }}" class="nav-link">
@@ -64,18 +64,12 @@
           </a>
         </li>
       </ul>
+
+      @if($cartItemCount > 0)
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
           <a href="{{ route('checkout') }}" class="nav-link">
             <p>Checkout</p>
-          </a>
-        </li>
-      </ul>
-      @else
-      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        <li class="nav-item">
-          <a href="{{ route('view.cart') }}" class="nav-link">
-            <p>View Cart</p>
           </a>
         </li>
       </ul>

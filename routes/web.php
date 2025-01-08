@@ -42,13 +42,13 @@ Route::prefix('admin')->group(function () {
         Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
         Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('admin.dashboard');
         Route::post('/logout', [AuthController::class, 'logout'])->name('admin.logout');
-        
+
         //orders
         Route::get('/orders', [OrderController::class, 'index'])->name('view.orders');
         Route::put('/orders/status/{order}', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
-        
+
         //order-track
-        Route::get('/track-order', [OrderTrackController::class, 'index'])->name('track.order');
+        Route::get('/order-track', [OrderTrackController::class, 'index'])->name('order.track');
 
         //blog
         Route::get('/addblog', [BlogController::class, 'create'])->name('add.blog');
@@ -60,7 +60,7 @@ Route::prefix('admin')->group(function () {
 
         //user
         Route::get('/view-cart', [CartItemController::class, 'viewcart'])->name('view.cart');
-        Route::get('/checkout', [CheckoutController::class,'index'])->name('checkout');
+        Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
         Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
     });
 });
@@ -72,6 +72,5 @@ Route::prefix('user')->group(function () {
         Route::post('/user-post-login', [UserAuthController::class, 'postLogin'])->name('user.login.post');
         Route::get('/register', [UserAuthController::class, 'registration'])->name('user.register');
         Route::post('/post-registration', [UserAuthController::class, 'postRegistration'])->name('user.register.post');
-        
     });
 });

@@ -20,8 +20,21 @@ class Order extends Model
         'state',
         'zip',
         'payable_amount',
-        'order_status'
+        'order_status',
+        'order_number',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($order) {
+            do {
+                $order->order_number = str_pad(rand(0, 99999999), 8, '0', STR_PAD_LEFT);
+            } while (self::where('order_number', $order->order_number)->exists());
+        });
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class);
