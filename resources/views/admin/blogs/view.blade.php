@@ -5,7 +5,6 @@
     <div class="container">
         <h1 class="my-4">Blogs</h1>
 
-        <!-- Products Table -->
         <table class="table">
             <thead>
                 <tr>
@@ -22,14 +21,14 @@
                 @foreach($blogs as $blog)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{$blog->blog_title}}</td>
-                    <td>{{ $blog->blog_name }}</td>
+                    <td style="white-space: nowrap;">{{$blog->blog_title}}</td>
+                    <td style="white-space: nowrap;">{{ $blog->blog_name }}</td>
                     <td>{{ $blog->blog_description }}</td>
                     <td>
                         <img src="{{ asset('storage/' . $blog->blog_image) }}" alt="{{ $blog->blog_name }}" width="100" height="auto">
                     </td>
-                    <td>{{ $blog->created_at->format('d-m-Y') }}</td>
-                    <td>    
+                    <td style="white-space: nowrap;">{{ $blog->created_at->format('d-m-Y') }}</td>
+                    <td style="white-space: nowrap;">
                         <a href="{{ route('blog.edit', $blog->id) }}" class="btn btn-dark btn-sm" style="display:inline;">Edit</a>
                         <form action="{{ route('blog.destroy', $blog->id) }}" method="POST" style="display:inline;">
                             @csrf

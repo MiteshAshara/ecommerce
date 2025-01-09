@@ -20,8 +20,8 @@
                 @foreach($products as $product)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $product->name }}</td>
-                    <td>{{ $product->description }}</td>
+                    <td style="white-space: nowrap;">{{ $product->name }}</td>
+                    <td style="white-space: nowrap;">{{ $product->description }}</td>
                     <td>₹&nbsp;{{ $product->price }}</td>
                     <td>{{ $product->stock }}</td>
                     <td>

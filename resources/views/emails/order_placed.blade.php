@@ -76,7 +76,7 @@
         <p>If you have any questions or need assistance, please contact our support team.</p>
 
         <div class="footer">
-            <p>Best regards, <br>Your Company Team</p>
+            <p>Best Regards, <br>Furni.in</p>
             <p><a href="{{ url('/') }}">Visit our website</a> for more information.</p>
         </div>
 

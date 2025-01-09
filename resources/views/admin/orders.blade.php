@@ -2,21 +2,20 @@
 
 @section('admin.content')
 <main class="main">
-
     <div class="container">
         <h1 class="my-4 text-center">Orders</h1>
         <table class="table text-center">
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">firstname</th>
-                    <th scope="col">email</th>
-                    <th scope="col">address</th>
-                    <th scope="col">city</th>
-                    <th scope="col">state</th>
-                    <th scope="col">zip</th>
-                    <th scope="col">quantity</th>
-                    <th scope="col">payment_status</th>
+                    <th scope="col">Firstname</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">City</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Zipcode</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Payment Via</th>
                     <th scope="col">Total Amount</th>
                     <th scope="col">Product Image</th>
                     <th scope="col">Order Status</th>

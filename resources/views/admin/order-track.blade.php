@@ -9,7 +9,7 @@
             <div class="col-12">
                 <form action="{{ route('order.track') }}" method="GET">
                     <div class="form-group">
-                        <label for="order_number">Enter Your Order Number:</label>
+                        <label for="order_number">Enter Order Number :</label>
                         <input type="text" name="order_number" id="order_number" class="form-control"
                             value="{{ old('order_number') }}" placeholder="#ordABC1234" required>
                     </div>

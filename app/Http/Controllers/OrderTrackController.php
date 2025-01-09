@@ -8,8 +8,7 @@ use Illuminate\Http\Request;
 class OrderTrackController extends Controller
 {
     public function index(Request $request)
-    {
-        
+    {        
         $orderStatus = null;
         $order = Order::all();
         if ($request->has('order_number')) {

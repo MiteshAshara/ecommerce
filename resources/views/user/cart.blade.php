@@ -3,9 +3,9 @@
 @section('admin.content')
 <main class="main">
     <div class="container mt-3 text-center">
-        <h4 class="fa fa-shopping-cart">Cart</h4>
+        <h1 class="my-4 text-center">Cart</h1>
         @if($cartItems->isEmpty())
-        <p>Your cart is empty!</p>
+        <p style="font-weight:bold;">Your cart is empty!</p>
         @else
         <table class="table text-center mt-2">
             <thead>
@@ -64,13 +64,11 @@
                 <tr>
                     <td colspan="5" class="text-right"><strong>Sub Total:</strong></td>
                     <td><strong>₹{{ number_format($subTotal, 2) }}</strong></td>
-                    <td></td>
                 </tr>
 
                 <tr>
                     <td colspan="5" class="text-right"><strong>Total Payment:</strong></td>
                     <td><strong>₹{{ number_format($subTotal, 2) }}</strong></td>
-                    <td></td>
                 </tr>
             </tbody>
         </table>        

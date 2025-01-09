@@ -68,7 +68,7 @@ Route::prefix('admin')->group(function () {
 //userlogin
 Route::prefix('user')->group(function () {
     Route::middleware('auth')->group(function () {
-        Route::get('/', [UserAuthController::class, 'index'])->name('user.login');
+        Route::get('/login', [UserAuthController::class, 'index'])->name('user.login');
         Route::post('/user-post-login', [UserAuthController::class, 'postLogin'])->name('user.login.post');
         Route::get('/register', [UserAuthController::class, 'registration'])->name('user.register');
         Route::post('/post-registration', [UserAuthController::class, 'postRegistration'])->name('user.register.post');
