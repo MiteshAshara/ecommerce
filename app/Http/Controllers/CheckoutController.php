@@ -7,14 +7,16 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\OrderPlacedMail;
+use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
         $cartItems = CartItem::where('user_id', Auth::id())->get();
-        return view('user.chekout', compact('cartItems'));
+        return view('user.chekout', compact('cartItems','user'));
     }
 
     public function store(Request $request)

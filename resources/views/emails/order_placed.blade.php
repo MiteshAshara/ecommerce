@@ -68,7 +68,7 @@
             @elseif($orderStatus=='completed' ) completed
             @elseif($orderStatus=='rejected' ) rejected
             @endif>
-            Your Order Hasbeen : {{ ucfirst($orderStatus) }}.
+            Your order hasbeen : {{ ucfirst($orderStatus) }}.
         </p>
 
         <p>We appreciate your business and will notify you once your order is processed.</p>

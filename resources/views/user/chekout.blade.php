@@ -12,8 +12,8 @@
                         <div class="col-50">
                             <label for="fname">Full Name</label>
                             <input type="text" id="fname" name="firstname" placeholder="John M. Doe" required>
-                            <label for="email"> Email</label>
-                            <input type="text" id="email" name="email" placeholder="john@example.com" required>
+                            <label for="email">Email</label>
+                            <input type="text" id="email" name="email" class="form-control" value="{{ $user->email }}" readonly>
                             <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
                             <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" required>
                             <label for="city"><i class="fa fa-institution"></i> City</label>

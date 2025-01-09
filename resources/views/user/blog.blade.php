@@ -36,7 +36,7 @@
 							<h3 class="mt-3"><a href="#" style="text-decoration: none;">{{ $blog->blog_title }}</a></h3>
 							<span class="fw-bold" style="overflow: hidden;">{{ $blog->blog_description}}</span>
 							<div class="meta">
-								<span>by <a href="{{URL::to('blog')}}" style="text-decoration: none;">Admin</a> <span>on <span class="fw-bold">{{ $blog->created_at->format('F,Y') }}</span></span>
+								<span>by <a href="{{URL::to('blog')}}" class="fw-bold text-secondary" style="text-decoration: none;">Admin</a> <span>on <span class="fw-bold">{{ $blog->created_at->format('F,Y') }}</span></span>
 							</div>
 						</a>
 					</div>
