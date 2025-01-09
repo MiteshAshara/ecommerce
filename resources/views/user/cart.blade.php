@@ -2,7 +2,7 @@
 
 @section('admin.content')
 <main class="main">
-    <div class="container mt-3">
+    <div class="container mt-3 text-center">
         <h4 class="fa fa-shopping-cart">Cart</h4>
         @if($cartItems->isEmpty())
         <p>Your cart is empty!</p>

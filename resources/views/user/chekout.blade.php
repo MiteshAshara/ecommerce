@@ -2,207 +2,102 @@
 
 @section('admin.content')
 <main class="main">
-    <div class="row">
-        <div class="col-75">
-            <h3 class="text-center mt-3">Checkout Billing</h3>
-            <div class="container">
-                <form action="{{ route('checkout.store') }}" method="POST">
-                    @csrf
-                    <div class="row">
-                        <div class="col-50">
+    <div class="col-md-10 mx-auto">
+        <h3 class="text-center mt-4">Checkout Billing</h3>
+        <div class="container">
+            <form action="{{ route('checkout.store') }}" method="POST">
+                @csrf
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        <div class="form-group">
                             <label for="fname">Full Name</label>
-                            <input type="text" id="fname" name="firstname" placeholder="John M. Doe" required>
-                            <label for="email">Email</label>
-                            <input type="text" id="email" name="email" class="form-control" value="{{ $user->email }}" readonly>
-                            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-                            <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" required>
-                            <label for="city"><i class="fa fa-institution"></i> City</label>
-                            <input type="text" id="city" name="city" placeholder="New York" required>
+                            <input type="text" id="fname" name="firstname" class="form-control" placeholder="John M. Doe" required>
+                        </div>
 
-                            <div class="row">
-                                <div class="col-50">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" value="{{ $user->email }}" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adr">Address</label>
+                            <input type="text" id="adr" name="address" class="form-control" placeholder="542 W. 15th Street" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" class="form-control" placeholder="New York" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="state">State</label>
-                                    <input type="text" id="state" name="state" placeholder="India" required>
+                                    <input type="text" id="state" name="state" class="form-control" placeholder="California" required>
                                 </div>
-                                <div class="col-30">
-                                    <label for="zip">Zip</label>
-                                    <input type="text" id="zip" name="zip" placeholder="360003" required>
-                                </div>
-                                <div class="col-20">
-                                    <label for="payment">Payment Method</label>
-                                    <div class="payment-options">
-                                        <label><input type="radio" name="payment" value="visa" checked>Visa Card</label>
-                                        <label><input type="radio" name="payment" value="paypal">Paypal</label>
-                                        <label><input type="radio" name="payment" value="cod">Cash on Delivery</label>
-                                    </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="zip">Zip Code</label>
+                                    <input type="text" id="zip" name="zip" class="form-control" placeholder="902105" required>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-50">
-                            <h5 class="text-center mt-5" style="font-weight: bold;">You're Checkout Cart</h5>
-                            <div class="container">
-
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>Image</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                        $subTotal = 0;
-                                        @endphp
-                                        @foreach($cartItems as $cartItem)
-                                        <tr data-cart-id="{{ $cartItem->id }}">
-                                            <td>{{ $cartItem->product->name }}</td>
-                                            <td><img src="{{ asset('storage/' . $cartItem->product->image) }}" alt="Product Image" width="50"></td>
-                                            <td>{{ $cartItem->quantity }}</td>
-                                            <td>₹{{ number_format($cartItem->product->price, 2) }}</td>
-                                        </tr>
-                                        @php
-                                        $subTotal += $cartItem->product->price * $cartItem->quantity;
-                                        @endphp
-                                        @endforeach
-                                    </tbody>
-                                </table>
-
-                                <div class="total">
-                                    <p><strong>Payable Amount:</strong> ₹{{ number_format($subTotal, 2) }}</p>
-                                </div>
-                            </div>
+                        <h5 class="mt-3">Payment Method</h5>
+                        <div class="form-check" >
+                            <input type="radio" id="visa" name="payment" value="visa" class="form-check-input" checked>
+                            <label for="visa" class="form-check-label">Visa Card</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" id="paypal" name="payment" value="paypal" class="form-check-input">
+                            <label for="paypal"  class="form-check-label">PayPal</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="radio" id="cod" name="payment" value="cod" class="form-check-input">
+                            <label for="cod"  class="form-check-label">Cash on Delivery</label>
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-dark">Make Order</button>
-                </form>
-            </div>
+                    <div class="col-md-6">
+                        <h5 class="text-secondary text-center mt-5 font-weight-bold">Checkout Cart</h5>
+                        <div class="container">
+                            <table class="table table-bordered">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Image</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $subTotal = 0; @endphp
+                                    @foreach($cartItems as $cartItem)
+                                        <tr data-cart-id="{{ $cartItem->id }}">
+                                            <td>{{ $cartItem->product->name }}</td>
+                                            <td>
+                                                <img src="{{ asset('storage/' . $cartItem->product->image) }}" 
+                                                     alt="{{ $cartItem->product->name }}" class="img-fluid" width="50">
+                                            </td>
+                                            <td>{{ $cartItem->quantity }}</td>
+                                            <td>₹{{ number_format($cartItem->product->price, 2) }}</td>
+                                        </tr>
+                                        @php $subTotal += $cartItem->product->price * $cartItem->quantity; @endphp
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            <div class="text-right">
+                                <strong>Total Payable: ₹{{ number_format($subTotal, 2) }}</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-dark mt-4 btn-lg" style="margin-bottom: 50px;">Make Order</button>
+                </div>
+            </form>
         </div>
     </div>
 </main>
 @endsection
-<style>
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 -16px;
-        justify-content: space-between;
-    }
-
-    .col-25,
-    .col-50,
-    .col-75 {
-        padding: 0 16px;
-    }
-
-    .col-50 {
-        flex: 48%;
-    }
-
-    .col-75 {
-        flex: 72%;
-    }
-
-    h3 {
-        font-size: 24px;
-        color: #333;
-        font-weight: 600;
-        margin-bottom: 20px;
-    }
-
-    label {
-        margin-bottom: 8px;
-        font-size: 14px;
-        color: #555;
-    }
-
-    input[type=text],
-    input[type=radio] {
-        width: 100%;
-        margin-bottom: 15px;
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 14px;
-    }
-
-    input[type=radio] {
-        width: auto;
-        margin-right: 8px;
-    }
-
-    .payment-options label {
-        display: inline-block;
-        margin-right: 15px;
-    }
-
-    .btn {
-        padding: 12px;
-        margin: 20px 0;
-        border: none;
-        width: 100%;
-        border-radius: 3px;
-        cursor: pointer;
-        font-size: 17px;
-        transition: background-color 0.3s ease;
-    }
-
-    .btn:hover {
-        background-color: #045d39;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 15px;
-    }
-
-    table,
-    th,
-    td {
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
-
-    th,
-    td {
-        padding: 10px;
-        text-align: left;
-    }
-
-    .total {
-        margin-top: 20px;
-        font-size: 18px;
-        font-weight: bold;
-        color: #333;
-    }
-
-    @media (max-width: 800px) {
-        .row {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .col-50,
-        .col-75 {
-            flex: 100%;
-            padding: 0 10px;
-        }
-
-        .container {
-            padding: 15px;
-        }
-
-        h3 {
-            font-size: 20px;
-        }
-
-        table th,
-        table td {
-            font-size: 12px;
-        }
-    }
-</style>
